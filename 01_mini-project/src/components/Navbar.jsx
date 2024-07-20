@@ -46,7 +46,7 @@ export default function Navbar(props) {
                 Search
               </button>
             </form>
-            <div className={`form-check form-switch text-${props.bgChange} mx-3`}>
+            <div className={`form-check form-switch text-${props.mode === "light"? "black": "white"} mx-3`}>
               <input
                 className="form-check-input"
                 type="checkbox"
