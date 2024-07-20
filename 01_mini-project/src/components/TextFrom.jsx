@@ -1,21 +1,24 @@
 import React, { useState } from "react";
 
 export default function TextFrom(props) {
-  const handleUpClick = () => {
+  const handleUpClick = (event) => {
+    event.preventDefault()
     // console.log("Uppercase was clicked ")
     let newText = text.toUpperCase();
     props.showAlert("convert to uppercase", "success")
     setText(newText);
   };
 
-  const handleLowerClick = () => {
+  const handleLowerClick = (event) => {
+    event.preventDefault()
     // console.log("Lowercase was clicked ")
     let newText = text.toLowerCase();
     props.showAlert("convert to lowercase", "success")
     setText(newText);
   };
 
-  const handleCopyText = () => {
+  const handleCopyText = (event) => {
+    event.preventDefault()
     console.log("text copy here");
     let text = document.getElementById("myBox");
     text.select();
@@ -24,14 +27,16 @@ export default function TextFrom(props) {
     props.showAlert("Copied to clipboard", "success")
   };
 
-  const handleExtraSpaces = () => {
+  const handleExtraSpaces = (event) => {
+    event.preventDefault()
     console.log("object");
     let newText = text.split(/[ ]+/);
     setText(newText.join(" "));
     props.showAlert("Extra space are removed", "success")
   };
 
-  const handleClearText = () => {
+  const handleClearText = (event) => {
+    event.preventDefault()
     // console.log("Lowercase was clicked ")
     let newText = "";
     setText(newText);
@@ -63,6 +68,7 @@ export default function TextFrom(props) {
               style={{
                 backgroundColor: props.mode === "light" ? "white" : "gray",
                 color: props.mode === "dark" ? "white" : "#042743",
+                cursor: "pointer"
               }}
               value={text}
               id="myBox"
@@ -70,13 +76,13 @@ export default function TextFrom(props) {
             ></textarea>
           </div>
 
-          <button className="btn btn-primary mx-1" onClick={handleUpClick}>
+          <button className="btn btn-primary mx-1 mt-2" onClick={handleUpClick}>
             Convert to Uppercase
           </button>
-          <button className="btn btn-primary mx-1" onClick={handleLowerClick}>
+          <button className="btn btn-primary mx-1 mt-2" onClick={handleLowerClick}>
             Convert to Uppercase
           </button>
-          <button className="btn btn-primary mx-1" onClick={handleClearText}>
+          <button className="btn btn-primary mx-1 mt-2" onClick={handleClearText}>
             Clear Text
           </button>
           <button
