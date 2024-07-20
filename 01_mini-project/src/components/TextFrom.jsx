@@ -14,19 +14,18 @@ export default function TextFrom(props) {
   };
 
   const handleCopyText = () => {
-    console.log("text copy here")
+    console.log("text copy here");
     let text = document.getElementById("myBox");
-    text.select()
+    text.select();
     // text.setSeletionRange(0, 9999);
-    navigator.clipboard.writeText(text.value)
+    navigator.clipboard.writeText(text.value);
   };
 
   const handleExtraSpaces = () => {
-    console.log("object")
+    console.log("object");
     let newText = text.split(/[ ]+/);
-    setText(newText.join(" "))
-  }
-
+    setText(newText.join(" "));
+  };
 
   const handleClearText = () => {
     // console.log("Lowercase was clicked ")
@@ -37,23 +36,29 @@ export default function TextFrom(props) {
   const handleOnChange = (event) => {
     // console.log("On change")
     setText(event.target.value);
-  };undefined
-  
+  };
+  undefined;
 
   const [text, setText] = useState("Enter text here");
 
   return (
     <>
-      <div>
+      <div
+        className="container"
+        style={{
+          color: props.mode === "dark" ? "white" : "#042743",
+        }}
+      >
         <h1>{props.heading}</h1>
         <form>
           <div className="mb-3">
-            <label htmlFor="myBox" className="form-label">
-              Email address
-            </label>
             <textarea
               className="form-control"
               onChange={handleOnChange}
+              style={{
+                backgroundColor: props.mode === "light" ? "white" : "gray",
+                color: props.mode === "dark" ? "white" : "#042743",
+              }}
               value={text}
               id="myBox"
               rows="8"
@@ -69,22 +74,35 @@ export default function TextFrom(props) {
           <button className="btn btn-primary mx-1" onClick={handleClearText}>
             Clear Text
           </button>
-          <button className="btn btn-primary mx-1 mt-2" onClick={handleCopyText}>
+          <button
+            className="btn btn-primary mx-1 mt-2"
+            onClick={handleCopyText}
+          >
             Copy Text
           </button>
-          <button className="btn btn-primary mx-1 mt-2" onClick={handleExtraSpaces}>
+          <button
+            className="btn btn-primary mx-1 mt-2"
+            onClick={handleExtraSpaces}
+          >
             Remove Extra Spaces
           </button>
         </form>
       </div>
-      <div className="container my-3">
+      <div
+        className="container my-3"
+        style={{
+          color: props.mode === "dark" ? "white" : "#042743",
+        }}
+      >
         <h1>Your text summary</h1>
         <p>
           {text.split(" ").length} words, {text.length} characters
         </p>
-        <p>{0.008 * text.split(" ").length} Minutes read</p>
+        <p>
+          {0.008 * text.split(" ").length} Minutes {props.mode} read
+        </p>
         <h2>Preview</h2>
-        <p>{text}</p>
+        <p>{text.length>0?text : "Enter something in the textbox above to preview it here"}</p>
       </div>
     </>
   );
