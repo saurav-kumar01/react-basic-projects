@@ -77,7 +77,7 @@ export default function TextFrom(props) {
           </div>
 
           <button className="btn btn-primary mx-1 mt-2" onClick={handleUpClick}>
-            Convert to Uppercase
+            Convert to Lowercase
           </button>
           <button className="btn btn-primary mx-1 mt-2" onClick={handleLowerClick}>
             Convert to Uppercase
