@@ -3,7 +3,6 @@ import React, { useState } from "react";
 export default function TextFrom(props) {
   const handleUpClick = (event) => {
     event.preventDefault()
-    // console.log("Uppercase was clicked ")
     let newText = text.toUpperCase();
     props.showAlert("convert to uppercase", "success")
     setText(newText);
@@ -11,7 +10,6 @@ export default function TextFrom(props) {
 
   const handleLowerClick = (event) => {
     event.preventDefault()
-    // console.log("Lowercase was clicked ")
     let newText = text.toLowerCase();
     props.showAlert("convert to lowercase", "success")
     setText(newText);
@@ -19,17 +17,14 @@ export default function TextFrom(props) {
 
   const handleCopyText = (event) => {
     event.preventDefault()
-    // console.log("text copy here");
     let text = document.getElementById("myBox");
     text.select();
-    // text.setSeletionRange(0, 9999);
     navigator.clipboard.writeText(text.value);
     props.showAlert("Copied to clipboard", "success")
   };
 
   const handleExtraSpaces = (event) => {
     event.preventDefault()
-    // console.log("object");
     let newText = text.split(/[ ]+/);
     setText(newText.join(" "));
     props.showAlert("Extra space are removed", "success")
@@ -37,14 +32,12 @@ export default function TextFrom(props) {
 
   const handleClearText = (event) => {
     event.preventDefault()
-    // console.log("Lowercase was clicked ")
     let newText = "";
     setText(newText);
     props.showAlert("Clear text from the textarea", "success")
   };
 
   const handleOnChange = (event) => {
-    // console.log("On change")
     setText(event.target.value);
   };
   undefined;
@@ -107,7 +100,7 @@ export default function TextFrom(props) {
       >
         <h1>Your text summary</h1>
         <p>
-          {text.split(" ").filter((element)=>{return element.length != 0}).length} words, {text.length} characters
+          {text.split(/\s+/).filter((element)=>{return element.length != 0}).length} words, {text.length} characters
         </p>
         <p>
           {0.008 * text.split(" ").length} Minutes {props.mode} read
