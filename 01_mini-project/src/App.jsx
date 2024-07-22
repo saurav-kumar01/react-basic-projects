@@ -48,7 +48,7 @@ function App() {
            exact path="/"
             element={
               <TextFrom
-                heading="Enter the text area below"
+                heading="Try TextUtls - word counter, character counter, Remove extra spaces"
                 showAlert={showAlert}
                 mode={mode}
               />

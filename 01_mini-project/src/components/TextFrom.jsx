@@ -19,7 +19,7 @@ export default function TextFrom(props) {
 
   const handleCopyText = (event) => {
     event.preventDefault()
-    console.log("text copy here");
+    // console.log("text copy here");
     let text = document.getElementById("myBox");
     text.select();
     // text.setSeletionRange(0, 9999);
@@ -29,7 +29,7 @@ export default function TextFrom(props) {
 
   const handleExtraSpaces = (event) => {
     event.preventDefault()
-    console.log("object");
+    // console.log("object");
     let newText = text.split(/[ ]+/);
     setText(newText.join(" "));
     props.showAlert("Extra space are removed", "success")
@@ -66,9 +66,9 @@ export default function TextFrom(props) {
               className="form-control"
               onChange={handleOnChange}
               style={{
-                backgroundColor: props.mode === "light" ? "white" : "gray",
+                backgroundColor: props.mode === "light" ? "white" : "#55d9b4",
                 color: props.mode === "dark" ? "white" : "#042743",
-                cursor: "pointer"
+                
               }}
               value={text}
               id="myBox"
@@ -76,22 +76,22 @@ export default function TextFrom(props) {
             ></textarea>
           </div>
 
-          <button className="btn btn-primary mx-1 mt-2" onClick={handleUpClick}>
+          <button disabled={text.length === 0} className="btn btn-primary mx-1 mt-2" onClick={handleUpClick}>
             Convert to Uppercase
           </button>
-          <button className="btn btn-primary mx-1 mt-2" onClick={handleLowerClick}>
+          <button disabled={text.length === 0} className="btn btn-primary mx-1 mt-2" onClick={handleLowerClick}>
             Convert to Lowercase
           </button>
-          <button className="btn btn-primary mx-1 mt-2" onClick={handleClearText}>
+          <button disabled={text.length === 0} className="btn btn-primary mx-1 mt-2" onClick={handleClearText}>
             Clear Text
           </button>
-          <button
+          <button disabled={text.length === 0}
             className="btn btn-primary mx-1 mt-2"
             onClick={handleCopyText}
           >
             Copy Text
           </button>
-          <button
+          <button disabled={text.length === 0}
             className="btn btn-primary mx-1 mt-2"
             onClick={handleExtraSpaces}
           >
@@ -107,13 +107,13 @@ export default function TextFrom(props) {
       >
         <h1>Your text summary</h1>
         <p>
-          {text.split(" ").length} words, {text.length} characters
+          {text.split(" ").filter((element)=>{return element.length != 0}).length} words, {text.length} characters
         </p>
         <p>
           {0.008 * text.split(" ").length} Minutes {props.mode} read
         </p>
         <h2>Preview</h2>
-        <p>{text.length>0?text : "Enter something in the textbox above to preview it here"}</p>
+        <p>{text.length>0?text : "Nothing to preview"}</p>
       </div>
     </>
   );
